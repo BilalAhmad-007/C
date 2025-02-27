@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+typedef struct Node Node;
+
+void traverseList(Node* ptr){
+    while(ptr!=NULL){
+        printf("%d -> ",ptr->data);
+        ptr=ptr->next;
+    }
+    printf("Null");
+}
+
+Node* insertAtEnd(Node* head, int val){
+    Node* new= (Node*)malloc(sizeof(Node*));
+    Node* ptr=head;
+    while(ptr->next!=NULL){
+        ptr=ptr->next;
+    }
+    new->data=val;
+    ptr->next=new;
+    new->next=NULL;
+    return head;
+}
+void main(){
+    // Creating the nodes
+    Node *head, *second, *Third;
+    head= (Node*)malloc(sizeof(Node));
+    second= (Node*)malloc(sizeof(Node));
+    Third= (Node*)malloc(sizeof(Node));
+    // Linking the Nodes with their data 
+    head->data=1;
+    head->next=second;
+
+    second->data=2;
+    second->next=Third;
+
+    Third->data=3;
+    Third->next=NULL;
+    traverseList(head);
+    head= insertAtEnd(head, 4);
+    printf("\nLinkedList after insertion in between\n");
+    traverseList(head);
+}
